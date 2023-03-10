@@ -6,7 +6,12 @@ import sakura from "../../assets/images/sakura.webp";
 import sasuke from "../../assets/images/sasuke_game.webp";
 import kakashi from "../../assets/images/kakashi_game.webp";
 
-export const gameCards = [
+export interface GameCard {
+  img: string;
+  key: string;
+}
+
+export const gameCards: GameCard[] = [
   {
     img: naruto,
     key: "naruto",
@@ -36,3 +41,21 @@ export const gameCards = [
   //   key: "",
   // },
 ];
+
+
+function swap(array: GameCard[], i:number, j:number){
+  const temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+}
+export function shuffle(arr: GameCard[]){
+  const length = arr.length;
+
+  for (let i = length; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * i);
+    const currentIndex = i - 1;
+    swap(arr, currentIndex, randomIndex)
+  }
+  return arr;
+
+}
